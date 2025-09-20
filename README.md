@@ -2,7 +2,7 @@
 
 ## Overview
 This project contains a C# program (Downloader) designed to download multiple files concurrently from provided URLs.
-The goal of this exercise is to demonstrate the ability to analyze existing code, identify concurrency issues, inefficiencies, and bad practices, and propose a robust, production-ready solution suitable for a senior-level developer.
+The goal of this exercise is to demonstrate the ability to analyze existing code, identify concurrency issues, inefficiencies, and bad practices, and propose a robust, production-ready.
 
 ---
 
