@@ -2,12 +2,28 @@ using System.Collections.Concurrent;
 
 namespace DownloaderApp;
 
-public class Downloader
-{
+/// <summary>
+/// The Downloader class is responsible for fetching data from a set of URLs concurrently,
+/// caching results in memory, and saving them to files.
+/// It demonstrates concurrency control using SemaphoreSlim and thread-safe collections.
+/// </summary>
+
+public class Downloader{
+
+    // Thread-safe cache to store downloaded content
     private static readonly ConcurrentBag<string> _cache = new();
+
+    // Shared HttpClient instance for efficiency and to avoid socket exhaustion
     private static readonly HttpClient _httpClient = new();
+    
+    // Semaphore to limit the number of concurrent downloads (set to 3 here)
     private static readonly SemaphoreSlim _semaphore = new(3);
-        
+
+
+    /// <summary>
+    /// Initiates multiple downloads concurrently and waits for completion.
+    /// </summary>
+    
     public async Task RunDownloadsAsync()
     {
         var totalDownloads = 10;
@@ -29,7 +45,14 @@ public class Downloader
 
         Console.WriteLine("Cache size: " + _cache.Count);
     }
-
+    
+    /// <summary>
+    /// Downloads content from the given URL, stores it in memory,
+    /// and writes it to a local JSON file.
+    /// </summary>
+    /// <param name="url">The URL to download data from.</param>
+    /// <param name="index">The file index for naming output files.</param>
+    
     private static async Task DownloadAsync(string url, int index)
     {
         await _semaphore.WaitAsync();
