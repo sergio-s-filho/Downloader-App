@@ -84,5 +84,3 @@ This output demonstrates:
 - Reliable final cache count
 
 ---
-
-This project reflects a **senior-level understanding of C# asynchronous programming**, concurrency management, and professional software design principles.
